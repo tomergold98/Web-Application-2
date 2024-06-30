@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Users List</title>
+    <link rel="stylesheet" href="list.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Users List</h1>
+        <table v-if="users.length">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in users" :key="user.email">
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p v-else>No users available.</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                users: []
+            },
+            created() {
+                fetch('/api/users')
+                    .then(response => {
+                        if (response.status === 401) {
+                            window.location.href = '/LoginPage';
+                        } else {
+                            return response.json();
+                        }
+                    })
+                    .then(data => {
+                        this.users = data;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching users:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

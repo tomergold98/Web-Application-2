@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration</title>
+  <link rel="stylesheet" href="Registration.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+ 
+<body>
+  <h1>Registration</h1>
+  <% if(msg1!=null) { %>
+    <h2><%= msg1 %></h2>
+    <% } %>
+  <form id="registrationForm" action="Registration" method="post">
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" placeholder="e-mail" autocomplete="on" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,30}" required>
+    <br><br>
+    <label for="confirm_email">Confirm Email:</label>
+    <input type="email" name="confirm_email" id="confirm_email" placeholder="confirm e-mail" autocomplete="on" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,30}" required>
+    <br><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" placeholder="password" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{8,30}$" required>
+    <br><br>
+    <label for="confirm_password">Confirm Password:</label>
+    <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm password" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{8,30}$" required>
+    <br><br>
+    <label for="username">Name:</label>
+    <input type="text" name="username" id="username" placeholder="name" pattern=".{1,30}" required>
+    <br><br>
+    <button type="submit">Create Account</button>
+    <br><br>
+  </form>
+ 
+  <script>
+    $(document).ready(function() {
+      $("#registrationForm").on("submit", function() {
+        var email = $("#email").val();
+        var confirmEmail = $("#confirm_email").val();
+        var password = $("#password").val();
+        var confirmPassword = $("#confirm_password").val();
+ 
+        if (email !== confirmEmail) {
+          alert("Email addresses do not match");
+          return false;
+        }
+ 
+        if (password !== confirmPassword) {
+          alert("Passwords do not match");
+          return false;
+        }
+ 
+        return true;
+      });
+    });
+  </script>
+ 
+</body>
+</html>

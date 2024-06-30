@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="LoginPage.css">
+</head>
+ 
+<body>
+    <h1>Login Page</h1>
+    <% if(msg!=null) { %>
+        <h2><%= msg %></h2>
+        <% } %>
+    <form action="LoginPage" method="post">
+        Email:<input type="email" name="doar" id="email" autocomplete="on" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,30}" required>
+        <br><br>
+        Password: <input type="password" name="sisma" required>
+        <br><br>
+        <button>Sign in</button>
+    </form>
+ 
+ 
+    <form action="Registration" method="get">
+        <div style="display: flex; align-items:center;">
+        <h3 style="font-size: 17px; margin-right: 10px;">Don't have an account yet?</h3>
+        <button>Sign up</button>
+    </form>
+</body>
+</html>
